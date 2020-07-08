@@ -18,7 +18,6 @@ function getIpv4MappedIpv6Address(ipv4) {
 
   // Prepare to derive a Hex version of the dotted-quad decimal IPv4 address.
   // Split the IPv4 address into its four parts.
-  if(ipv4!=null){
   let ipv4Quads = ipv4.split('.');
   // Count the number of parts found.
   let numIpv4Segments = ipv4Quads.length;
@@ -52,7 +51,7 @@ function getIpv4MappedIpv6Address(ipv4) {
         }
       }
     }
-  }}
+  }
   return ipv6Address;
 }
 
@@ -67,11 +66,10 @@ function getIpv4MappedIpv6Address(ipv4) {
  */
 function getFirstIpAddress(cidrStr, callback) {
 
-// Initialize return arguments for callback
+  // Initialize return arguments for callback
   let firstIpAddress = null;
   let callbackError = null;
 
-let result = new Object();
   // Instantiate an object from the imported class and assign the instance to variable cidr.
   const cidr = new IPCIDR(cidrStr);
   // Initialize options for the toArray() method.
@@ -91,14 +89,11 @@ let result = new Object();
     // Notice the destructering assignment syntax to get the value of the first array's element.
     [firstIpAddress] = cidr.toArray(options);
   }
- result.ipv4 =firstIpAddress;
- result.ipv6 = getIpv4MappedIpv6Address(firstIpAddress);
   // Call the passed callback function.
   // Node.js convention is to pass error data as the first argument to a callback.
   // The IAP convention is to pass returned data as the first argument and error
   // data as the second argument to the callback function.
-  return callback(JSON.stringify(result), callbackError);
- // return callback(firstIpAddress, callbackError);
+  return callback(firstIpAddress, callbackError);
 }
 
 

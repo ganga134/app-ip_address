@@ -10,6 +10,7 @@ function getIpv4MappedIpv6Address(ipv4) {
 
   // Prepare to derive a Hex version of the dotted-quad decimal IPv4 address.
   // Split the IPv4 address into its four parts.
+  if(ipv4!=null){
   let ipv4Quads = ipv4.split('.');
   // Count the number of parts found.
   let numIpv4Segments = ipv4Quads.length;
@@ -43,7 +44,8 @@ function getIpv4MappedIpv6Address(ipv4) {
         }
       }
     }
-  }
+  }}
   return ipv6Address;
 }
+
 module.exports.getIpv4MappedIpv6Address = getIpv4MappedIpv6Address;
